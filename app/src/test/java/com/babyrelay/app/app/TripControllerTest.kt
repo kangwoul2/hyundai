@@ -436,6 +436,25 @@ class TripControllerTest {
         assertEquals(listOf("물티슈"), e.ctl.state.value.handoff!!.carryItems)
     }
 
+    @Test fun `실제 Pleos처럼 RoutingCompleted 없이 RouteStarted만 와도 경유지 조회를 요청하고 오래 걸린 확인도 받아들인다`() = runTest {
+        val gw = FakeGateway(RequestResult.Sent)
+        val ctl = TripController(gw, InMemoryTripStore(), repo(facilities), MutableStateFlow(UxRestrictionState(false, UxSource.SIMULATED)), backgroundScope, { Fx.NOW }, ZoneOffset.UTC)
+        ctl.start(); runCurrent()
+        gw.events.emit(NaviEvent.CurrentLocation(Fx.ORIGIN_LAT, Fx.ORIGIN_LON))
+        gw.events.emit(NaviEvent.DestinationInfo(Fx.daejeon))
+        runCurrent()
+        ctl.beginPlanning(); runCurrent()
+        ctl.selectStop("best")
+        advanceTimeBy(13_000); runCurrent() // 실제 관찰: 요청 후 약 13초 뒤 onRouteStarted
+        assertEquals(Registration.REQUESTED, ctl.state.value.session!!.plannedStops.first().registration) // 20초 타임아웃 전
+        val before = gw.waypointInfoRequests
+        gw.events.emit(NaviEvent.RouteStarted("샘플", 0, 0)); runCurrent()
+        assertEquals(TripState.DRIVING, ctl.state.value.session!!.state)
+        assertEquals(before + 1, gw.waypointInfoRequests)
+        gw.events.emit(NaviEvent.WaypointInfo(listOf(Fx.facility("best", 0.46).toPlace()))); runCurrent()
+        assertEquals(Registration.CONFIRMED, ctl.state.value.session!!.plannedStops.first().registration)
+    }
+
     @Test fun `Replay 시나리오는 같은 입력에서 항상 같은 이벤트를 만든다`() {
         ReplayScenario.entries.forEach {
             assertEquals(ReplayDirector.eventsFor(it, null, defaults), ReplayDirector.eventsFor(it, null, defaults))
@@ -460,7 +479,8 @@ class TripControllerTest {
         override fun disconnect() = Unit
         override fun requestDestinationInfo() = RequestResult.Sent
         override fun requestCurrentLocation() = RequestResult.Sent
-        override fun requestWaypointInfo() = RequestResult.Sent
+        var waypointInfoRequests = 0
+        override fun requestWaypointInfo(): RequestResult { waypointInfoRequests++; return RequestResult.Sent }
         override fun requestRoute(destination: Place, stops: List<Place>) = routeResult
     }
 }

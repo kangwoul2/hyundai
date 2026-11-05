@@ -51,6 +51,13 @@ class PleosNaviAdapter(context: Context) : NavigationGateway {
             _events.tryEmit(NaviEvent.RoutingCompleted)
         }
 
+        // 실제 Pleos 에뮬레이터는 onRoutingCompleted 대신 deprecated onRouteEnded를 호출한다(2026-11-05 관찰).
+        @Suppress("OVERRIDE_DEPRECATION")
+        override fun onRouteEnded() {
+            log("onRouteEnded")
+            _events.tryEmit(NaviEvent.RoutingCompleted)
+        }
+
         override fun onRouteCancelled() {
             log("onRouteCancelled")
             _events.tryEmit(NaviEvent.RouteCancelled)
@@ -85,7 +92,9 @@ class PleosNaviAdapter(context: Context) : NavigationGateway {
         }
 
         override fun onDestinationInfo(destinationInfo: DestinationInfo) {
-            log("onDestinationInfo name=${destinationInfo.name}")
+            log("onDestinationInfo name='${destinationInfo.name}'")
+            // 실제 Pleos 에뮬레이터는 목적지가 없을 때도 빈 이름/좌표로 이 콜백을 보낸다(2026-11-05 확인). 목적지로 취급하지 않는다.
+            if (destinationInfo.name.isBlank() || (destinationInfo.latitude == 0.0 && destinationInfo.longitude == 0.0)) return
             _events.tryEmit(
                 NaviEvent.DestinationInfo(
                     Place(

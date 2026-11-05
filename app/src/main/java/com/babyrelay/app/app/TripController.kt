@@ -82,7 +82,7 @@ class TripController(
     private val scope: CoroutineScope,
     private val clock: () -> Long = System::currentTimeMillis,
     private val zone: ZoneId = ZoneId.systemDefault(),
-    private val registrationTimeoutMs: Long = 8_000,
+    private val registrationTimeoutMs: Long = 20_000, // 실제 Pleos에서 onRouteStarted까지 약 13초 걸림(관찰)
     private val idGen: () -> String = { UUID.randomUUID().toString() },
 ) {
     private val _state = MutableStateFlow(ControllerState())
@@ -372,6 +372,9 @@ class TripController(
                 if (pendingRoute) {
                     applyTrip(TripEvent.StartTrip(source))
                     pendingRoute = false
+                    // 경로가 시작되면 경유지 반영 여부를 내비에 조회한다(Pleos는 onWayPointInfo를 자동 전송하지 않음).
+                    val reg = session?.plannedStops?.firstOrNull()?.registration
+                    if (reg == Registration.REQUESTED || reg == Registration.UNCONFIRMED) gateway.requestWaypointInfo()
                 } else {
                     note("무시: 앱이 요청하지 않은 경로 시작")
                 }

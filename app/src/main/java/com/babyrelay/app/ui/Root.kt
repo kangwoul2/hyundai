@@ -61,7 +61,8 @@ fun BabyRelayRoot(vm: MainViewModel, darkOverride: Boolean?, onDarkOverride: (Bo
         val c = Hmi.colors
         BoxWithConstraints(Modifier.fillMaxSize().background(c.background)) {
             // 창 높이가 낮으면(AAOS 시스템 바가 높이를 차지하는 경우) compact 크기로 전환한다.
-            val scale = UiScale(compact = maxHeight < 640.dp)
+            val large = maxWidth >= 1400.dp
+            val scale = UiScale(compact = !large && maxHeight < 640.dp, large = large)
             CompositionLocalProvider(LocalScale provides scale) {
                 Column(Modifier.fillMaxSize().statusBarsPadding()) {
                     TopBar(ui, onBadge = { devOpen = true })

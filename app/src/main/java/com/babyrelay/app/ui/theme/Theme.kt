@@ -79,14 +79,15 @@ object Dimens {
  * 이런 낮은 창에서는 compact로 전환해 터치 영역·글자·여백을 줄인다(글자는 20sp 이상 유지).
  */
 @Immutable
-class UiScale(val compact: Boolean) {
-    val touch get() = if (compact) 60.dp else 76.dp
-    val chip get() = if (compact) 48.dp else 68.dp
-    val pad get() = if (compact) 14.dp else 24.dp
-    val vpad get() = if (compact) 8.dp else 24.dp
-    val gap get() = if (compact) 8.dp else 14.dp
-    val topBar get() = if (compact) 52.dp else 72.dp
-    val textScale get() = if (compact) 0.85f else 1f
+class UiScale(val compact: Boolean, val large: Boolean = false) {
+    // large: 창 너비 1400dp 이상(Pleos Connect 에뮬레이터 2560x1440@mdpi 등). 같은 dp라도 물리 크기가 작아 보여 키운다.
+    val touch get() = if (large) 100.dp else if (compact) 60.dp else 76.dp
+    val chip get() = if (large) 84.dp else if (compact) 48.dp else 68.dp
+    val pad get() = if (large) 32.dp else if (compact) 14.dp else 24.dp
+    val vpad get() = if (large) 24.dp else if (compact) 8.dp else 24.dp
+    val gap get() = if (large) 18.dp else if (compact) 8.dp else 14.dp
+    val topBar get() = if (large) 88.dp else if (compact) 52.dp else 72.dp
+    val textScale get() = if (large) 1.35f else if (compact) 0.85f else 1f
 }
 
 val LocalScale = staticCompositionLocalOf { UiScale(false) }
