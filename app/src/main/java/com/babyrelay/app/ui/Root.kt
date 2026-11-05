@@ -39,6 +39,7 @@ import com.babyrelay.app.app.MainViewModel
 import com.babyrelay.app.app.UiModel
 import com.babyrelay.app.data.navigation.Connection
 import com.babyrelay.app.data.navigation.ReplayScenario
+import com.babyrelay.app.domain.UxSource
 import com.babyrelay.app.domain.model.NavMode
 import com.babyrelay.app.domain.model.TripState
 import com.babyrelay.app.ui.theme.BabyRelayTheme
@@ -60,7 +61,7 @@ fun BabyRelayRoot(vm: MainViewModel, darkOverride: Boolean?, onDarkOverride: (Bo
         val c = Hmi.colors
         BoxWithConstraints(Modifier.fillMaxSize().background(c.background)) {
             // 창 높이가 낮으면(AAOS 시스템 바가 높이를 차지하는 경우) compact 크기로 전환한다.
-            val scale = UiScale(compact = maxHeight < 480.dp)
+            val scale = UiScale(compact = maxHeight < 640.dp)
             CompositionLocalProvider(LocalScale provides scale) {
                 Column(Modifier.fillMaxSize().statusBarsPadding()) {
                     TopBar(ui, onBadge = { devOpen = true })
@@ -167,24 +168,28 @@ private fun DevPanel(vm: MainViewModel, ui: UiModel, dark: Boolean?, onDark: (Bo
                                 ReplayScenario.entries.forEach { sc ->
                                     HmiButton(sc.label, { vm.playScenario(sc) }, kind = ButtonKind.Secondary, dense = true)
                                 }
+                                var autoConfirm by remember { mutableStateOf(true) }
+                                HmiButton(
+                                    if (autoConfirm) "경유지 확인: 자동" else "경유지 확인: 없음",
+                                    { autoConfirm = !autoConfirm; vm.setAutoConfirm(autoConfirm) },
+                                    kind = ButtonKind.Secondary, dense = true,
+                                )
                             }
                         } else {
                             HmiButton("REPLAY 모드로 전환", { vm.switchToReplay("개발 패널에서 직접 전환") }, kind = ButtonKind.Secondary, dense = true)
                         }
                     }
-                    // 열 2: 시뮬레이션 조건
+                    // 열 2: 주행 제한 값의 출처 (시뮬레이션 2종 + 실제 AAOS 플랫폼)
                     Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(gap)) {
                         if (ui.mode == NavMode.REPLAY) {
-                            SectionLabel("주행 제한 시뮬레이션 (실제 차량 값 아님)")
+                            SectionLabel("주행 제한 값")
                             FlowRow(horizontalArrangement = Arrangement.spacedBy(gap), verticalArrangement = Arrangement.spacedBy(gap)) {
-                                SelectChip("제한 없음(정차)", ui.ux.requiresDistractionOptimization == false, { vm.setSimulatedRestricted(false) })
-                                SelectChip("제한 중(주행)", ui.ux.requiresDistractionOptimization == true, { vm.setSimulatedRestricted(true) })
+                                val sim = ui.ux.source == UxSource.SIMULATED
+                                SelectChip("시뮬: 정차", sim && ui.ux.requiresDistractionOptimization == false, { vm.setUxFromPlatform(false); vm.setSimulatedRestricted(false) })
+                                SelectChip("시뮬: 주행", sim && ui.ux.requiresDistractionOptimization == true, { vm.setUxFromPlatform(false); vm.setSimulatedRestricted(true) })
+                                SelectChip("AAOS 플랫폼", !sim, { vm.setUxFromPlatform(true) })
                             }
-                            SectionLabel("경유지 등록 확인")
-                            FlowRow(horizontalArrangement = Arrangement.spacedBy(gap), verticalArrangement = Arrangement.spacedBy(gap)) {
-                                SelectChip("내비가 자동 확인", true, { vm.setAutoConfirm(true) })
-                                SelectChip("확인 이벤트 없음", false, { vm.setAutoConfirm(false) })
-                            }
+                            HText("시뮬레이션은 실제 차량 값이 아님. 'AAOS 플랫폼'은 CarUxRestrictions 실제 값.", Type.caption, color = c.textSub, maxLines = 3)
                         }
                     }
                     // 열 3: 상태·테마·이벤트

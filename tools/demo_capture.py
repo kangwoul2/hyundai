@@ -30,6 +30,13 @@ def dev_panel(*taps):
     wait(1.0)
 
 
+def vhal(gear, speed, brake):
+    """에뮬레이터 VHAL 속성 주입: 기어/속도/주차 브레이크 (Google AAOS 에뮬레이터 기준)."""
+    emu.adb("shell", "cmd", "car_service", "inject-vhal-event", "0x11200402", str(brake))
+    emu.adb("shell", "cmd", "car_service", "inject-vhal-event", "0x11400400", str(gear))
+    emu.adb("shell", "cmd", "car_service", "inject-vhal-event", "0x11600207", str(speed))
+
+
 def main():
     out = sys.argv[1]
     os.makedirs(out, exist_ok=True)
@@ -58,9 +65,19 @@ def main():
     emu.tap_text("기저귀 교환 완료"); wait(0.5)
     emu.tap_text("시설 이용 가능"); wait(1)
     shot("06-records")
-    dev_panel("제한 중(주행)")
+    dev_panel("시뮬: 주행")
     shot("07-restricted")
-    dev_panel("제한 없음(정차)")
+    dev_panel("시뮬: 정차")
+    if "--platform-ux" in sys.argv:
+        # 실제 AAOS CarUxRestrictions 값으로 화면 제한이 바뀌는지 확인한다(에뮬레이터 VHAL 주입).
+        dev_panel("AAOS 플랫폼")
+        vhal(gear=8, speed=15.0, brake=0)  # D 기어, 15m/s, 주차 브레이크 해제
+        wait(2.5)
+        shot("07b-platform-driving")
+        vhal(gear=4, speed=0.0, brake=1)  # P 기어, 정지, 주차 브레이크
+        wait(2.5)
+        shot("07c-platform-parked")
+        dev_panel("시뮬: 정차")
     emu.tap_text("다시 출발"); wait(1)
     dev_panel("목적지 도착"); wait(1)
     emu.tap_text("기저귀", exact=True); wait(0.4)

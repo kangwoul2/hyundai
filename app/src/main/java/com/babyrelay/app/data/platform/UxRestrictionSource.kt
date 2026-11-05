@@ -6,7 +6,12 @@ import android.os.Looper
 import android.util.Log
 import com.babyrelay.app.domain.UxRestrictionState
 import com.babyrelay.app.domain.UxSource
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.lang.reflect.Proxy
@@ -26,6 +31,33 @@ class SimulatedUxSource(initialRestricted: Boolean = false) : UxRestrictionSourc
     fun setRestricted(restricted: Boolean) {
         _state.value = UxRestrictionState(restricted, UxSource.SIMULATED)
     }
+}
+
+/**
+ * REPLAY 모드용 선택 소스: 시뮬레이션 값 또는 실제 AAOS 플랫폼 값(Pleos 연동과 무관하게 CarUxRestrictions만 읽는다).
+ * 플랫폼 값을 고르면 화면 제한이 차량(에뮬레이터) 주행 상태를 따른다.
+ */
+@OptIn(ExperimentalCoroutinesApi::class)
+class SwitchableUxSource(
+    private val simulated: SimulatedUxSource,
+    private val platform: UxRestrictionSource,
+    scope: CoroutineScope,
+) : UxRestrictionSource {
+    private val usePlatformFlag = MutableStateFlow(false)
+    val usingPlatform: StateFlow<Boolean> = usePlatformFlag.asStateFlow()
+    override val state: StateFlow<UxRestrictionState> = usePlatformFlag
+        .flatMapLatest { if (it) platform.state else simulated.state }
+        .stateIn(scope, SharingStarted.Eagerly, simulated.state.value)
+
+    fun setUsePlatform(use: Boolean) {
+        if (use == usePlatformFlag.value) return
+        if (use) platform.start() else platform.stop()
+        usePlatformFlag.value = use
+    }
+
+    fun setSimulatedRestricted(restricted: Boolean) = simulated.setRestricted(restricted)
+    override fun start() = Unit
+    override fun stop() = platform.stop()
 }
 
 /**

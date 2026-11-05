@@ -12,6 +12,7 @@ import com.babyrelay.app.data.navigation.ReplayNaviAdapter
 import com.babyrelay.app.data.navigation.ReplayScenario
 import com.babyrelay.app.data.platform.AaosUxRestrictionSource
 import com.babyrelay.app.data.platform.SimulatedUxSource
+import com.babyrelay.app.data.platform.SwitchableUxSource
 import com.babyrelay.app.data.platform.UxRestrictionSource
 import com.babyrelay.app.domain.UiAccess
 import com.babyrelay.app.domain.UxPolicy
@@ -118,7 +119,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fallback.value = reason
         val scope = viewModelScope
         val replay = ReplayNaviAdapter(scope, container.replayDefaults)
-        launchRuntime(replay, SimulatedUxSource(false))
+        launchRuntime(replay, SwitchableUxSource(SimulatedUxSource(false), AaosUxRestrictionSource(getApplication()), scope))
         connecting.value = false
     }
 
@@ -156,7 +157,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun setSimulatedRestricted(restricted: Boolean) {
-        (runtime.value?.uxSource as? SimulatedUxSource)?.setRestricted(restricted)
+        (runtime.value?.uxSource as? SwitchableUxSource)?.setSimulatedRestricted(restricted)
+    }
+
+    /** REPLAY에서도 주행 제한 값을 실제 AAOS 플랫폼(CarUxRestrictions)에서 받는다. */
+    fun setUxFromPlatform(use: Boolean) {
+        (runtime.value?.uxSource as? SwitchableUxSource)?.setUsePlatform(use)
     }
 
     fun setAutoConfirm(enabled: Boolean) {
