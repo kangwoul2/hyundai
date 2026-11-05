@@ -24,3 +24,10 @@ data/raw/
 # Explicit competition release deliverable, when it really exists:
 !apk/
 !apk/*_release.apk
+
+# BabyRelay: 서명 키 설정과 로컬 산출물
+keystore.properties
+_scratch/
+app/release/
+*.hprof
+screenshots/raw/
