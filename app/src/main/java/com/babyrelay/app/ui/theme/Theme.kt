@@ -70,13 +70,26 @@ val LightHmi = HmiColors(
 
 /** 차량용 크기 기준(프로젝트 임시값). 터치 영역은 76dp 이상, 본문은 24sp 이상을 목표로 한다. */
 object Dimens {
-    val touch = 76.dp
-    val chip = 68.dp
     val radius = 14.dp
-    val pad = 24.dp
-    val gap = 16.dp
-    val topBar = 72.dp
 }
+
+/**
+ * 앱 창의 사용 가능한 높이에 맞춘 크기 체계(프로젝트 임시값).
+ * AAOS는 상단 상태바·하단 GNB가 높이를 차지하므로, 에뮬레이터(1920x720 @240dpi)에서 앱 영역이 약 308dp였다.
+ * 이런 낮은 창에서는 compact로 전환해 터치 영역·글자·여백을 줄인다(글자는 20sp 이상 유지).
+ */
+@Immutable
+class UiScale(val compact: Boolean) {
+    val touch get() = if (compact) 60.dp else 76.dp
+    val chip get() = if (compact) 48.dp else 68.dp
+    val pad get() = if (compact) 14.dp else 24.dp
+    val vpad get() = if (compact) 8.dp else 24.dp
+    val gap get() = if (compact) 8.dp else 14.dp
+    val topBar get() = if (compact) 52.dp else 72.dp
+    val textScale get() = if (compact) 0.85f else 1f
+}
+
+val LocalScale = staticCompositionLocalOf { UiScale(false) }
 
 object Type {
     val display = 44.sp

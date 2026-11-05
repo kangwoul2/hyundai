@@ -423,6 +423,19 @@ class TripControllerTest {
         assertEquals(1800, e.ctl.state.value.etaRemainSec)
     }
 
+    @Test fun `도착 후 전달 물품 수정은 주행 제한이 없을 때만 가능하고 인계 카드에 반영된다`() = runTest {
+        val e = env()
+        planToStop(e)
+        e.ctl.startTripManually()
+        play(e, ReplayScenario.DESTINATION_ARRIVAL)
+        e.ux.value = UxRestrictionState(true, UxSource.PLATFORM)
+        assertTrue(e.ctl.toggleCarryItem(com.babyrelay.app.domain.model.CarryItem.WIPES) is ActionResult.Blocked)
+        assertTrue(e.ctl.state.value.handoff!!.carryItems.isEmpty())
+        e.ux.value = UxRestrictionState(false, UxSource.PLATFORM)
+        assertEquals(ActionResult.Ok, e.ctl.toggleCarryItem(com.babyrelay.app.domain.model.CarryItem.WIPES))
+        assertEquals(listOf("물티슈"), e.ctl.state.value.handoff!!.carryItems)
+    }
+
     @Test fun `Replay 시나리오는 같은 입력에서 항상 같은 이벤트를 만든다`() {
         ReplayScenario.entries.forEach {
             assertEquals(ReplayDirector.eventsFor(it, null, defaults), ReplayDirector.eventsFor(it, null, defaults))

@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,6 +29,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.babyrelay.app.ui.theme.Dimens
+import com.babyrelay.app.ui.theme.LocalScale
 import com.babyrelay.app.ui.theme.Hmi
 import com.babyrelay.app.ui.theme.Type
 
@@ -44,8 +46,8 @@ fun HText(
     align: TextAlign? = null,
 ) {
     Text(
-        text = text, fontSize = size, fontWeight = weight, color = color, modifier = modifier,
-        maxLines = maxLines, overflow = TextOverflow.Ellipsis, textAlign = align, lineHeight = size * 1.25f,
+        text = text, fontSize = size * LocalScale.current.textScale, fontWeight = weight, color = color, modifier = modifier,
+        maxLines = maxLines, overflow = TextOverflow.Ellipsis, textAlign = align, lineHeight = size * LocalScale.current.textScale * 1.25f,
     )
 }
 
@@ -58,6 +60,7 @@ fun HmiButton(
     kind: ButtonKind = ButtonKind.Primary,
     enabled: Boolean = true,
     sub: String? = null,
+    dense: Boolean = false,
 ) {
     val c = Hmi.colors
     val bg = when {
@@ -74,11 +77,11 @@ fun HmiButton(
     }
     Column(
         modifier = modifier
-            .heightIn(min = Dimens.touch)
+            .heightIn(min = if (dense) 48.dp else LocalScale.current.touch)
             .clip(RoundedCornerShape(Dimens.radius))
             .background(bg)
             .clickable(enabled = enabled, role = Role.Button, onClick = onClick)
-            .padding(horizontal = 24.dp, vertical = 12.dp),
+            .padding(horizontal = if (dense) 16.dp else 24.dp, vertical = if (dense) 6.dp else 10.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
@@ -99,12 +102,12 @@ fun SelectChip(label: String, selected: Boolean, onClick: () -> Unit, enabled: B
     }
     Box(
         modifier = modifier
-            .heightIn(min = Dimens.chip)
+            .heightIn(min = LocalScale.current.chip)
             .clip(RoundedCornerShape(Dimens.radius))
             .background(bg)
             .border(BorderStroke(if (selected) 2.dp else 1.dp, if (selected) c.accent else c.outline), RoundedCornerShape(Dimens.radius))
             .clickable(enabled = enabled, role = Role.Checkbox, onClick = onClick)
-            .padding(horizontal = 22.dp, vertical = 10.dp),
+            .padding(horizontal = 18.dp, vertical = 8.dp),
         contentAlignment = Alignment.Center,
     ) {
         HText((if (selected) "✓ " else "") + label, Type.body, if (selected) FontWeight.SemiBold else FontWeight.Normal, fg)
@@ -123,8 +126,8 @@ fun HmiCard(
             .clip(RoundedCornerShape(Dimens.radius + 2.dp))
             .background(c.surface)
             .border(BorderStroke(if (highlight) 2.dp else 1.dp, if (highlight) c.accent else c.outline), RoundedCornerShape(Dimens.radius + 2.dp))
-            .padding(20.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp),
+            .padding(if (LocalScale.current.compact) 10.dp else 20.dp),
+        verticalArrangement = Arrangement.spacedBy(if (LocalScale.current.compact) 3.dp else 10.dp),
         content = content,
     )
 }
@@ -157,11 +160,27 @@ fun Banner(text: String, color: Color, modifier: Modifier = Modifier, action: (@
             .fillMaxWidth()
             .background(color.copy(alpha = 0.16f))
             .border(BorderStroke(1.dp, color.copy(alpha = 0.6f)))
-            .padding(horizontal = Dimens.pad, vertical = 10.dp),
+            .padding(horizontal = LocalScale.current.pad, vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         HText(text, Type.label, FontWeight.Medium, Hmi.colors.text, Modifier.weight(1f), maxLines = 3)
         action?.invoke()
+    }
+}
+
+/** 라벨 + 내용. 낮은 창(compact)에서는 라벨을 왼쪽에 두어 세로 공간을 아낀다. */
+@Composable
+fun Section(label: String, content: @Composable () -> Unit) {
+    if (LocalScale.current.compact) {
+        Row(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically) {
+            SectionLabel(label, Modifier.width(96.dp))
+            Column(Modifier.weight(1f)) { content() }
+        }
+    } else {
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            SectionLabel(label)
+            content()
+        }
     }
 }

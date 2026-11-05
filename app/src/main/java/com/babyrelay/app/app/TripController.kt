@@ -200,8 +200,18 @@ class TripController(
 
     fun toggleNeed(a: Amenity): ActionResult = editPlan { it.copy(needs = if (a in it.needs) it.needs - a else it.needs + a) }
 
-    fun toggleCarryItem(i: CarryItem): ActionResult =
-        editPlan { it.copy(carryItems = if (i in it.carryItems) it.carryItems - i else it.carryItems + i) }
+    /** 전달 물품. 계획 단계에서는 계획 수정 권한, 도착 단계에서는 인계 수정 권한(주행 제한 없음)이 필요하다. */
+    fun toggleCarryItem(i: CarryItem): ActionResult {
+        val s = session ?: return ActionResult.Invalid("여정이 없습니다")
+        if (s.state == TripState.ARRIVED) {
+            if (!access.canEditHandoff) return ActionResult.Blocked(access.reason ?: "주행 제한")
+            commit(s.copy(carryItems = s.carryItems.toggle(i), updatedAt = clock()))
+            return ActionResult.Ok
+        }
+        return editPlan { it.copy(carryItems = it.carryItems.toggle(i)) }
+    }
+
+    private fun Set<CarryItem>.toggle(i: CarryItem) = if (i in this) this - i else this + i
 
     private inline fun editPlan(change: (TripSession) -> TripSession): ActionResult {
         val s = session ?: return ActionResult.Invalid("여정이 없습니다")
