@@ -1,0 +1,26 @@
+# Android / Kotlin future workspace
+.gradle/
+build/
+**/build/
+local.properties
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+# Secrets and signing
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+*.p12
+*.pfx
+# Private raw sensor data and logs
+local-data/
+data/raw/
+*.log
+# APK outputs are not committed by default.
+*.apk
+# Explicit competition release deliverable, when it really exists:
+!apk/
+!apk/*_release.apk
