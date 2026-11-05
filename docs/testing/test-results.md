@@ -39,6 +39,10 @@
 
 앱 UI에서도 같은 값으로 잠금/해제 확인(스크린샷 `07b-platform-driving-dark.png`, `07c-platform-parked-dark.png`). 에뮬레이터 가짜 신호이며 실차 검증이 아니다.
 
+### 계측 테스트 — Pleos Connect 에뮬레이터에서도 실행
+
+같은 4건을 **Pleos Connect Emulator v2.1.0**(`pleos21`)에서 실행: 4건 중 실패 0, 오류 0. (`aaosUxRestrictions_readsPlatformValue`는 Pleos 이미지에서도 PLATFORM 값을 읽음 — 주차 상태 값 false. 주행 중 true 전환은 Pleos 이미지에서 시험하지 않음.) 같은 날 첫 시도는 `connectedDebugAndroidTest`가 실패로 끝났고(테스트 0건 실행, 원인은 로그로 확정하지 못함 — 릴리스 서명 앱이 설치된 상태에서 디버그 서명 앱으로 교체되는 시점의 일시적 문제로 추정) 재실행에서 통과했다.
+
 ## 3. 에뮬레이터 시나리오 (스크립트 `tools/demo_capture.py`)
 
 - REPLAY 전체 흐름(계획→추천→등록→이동→휴식 기록→주행 제한 잠금→도착→카드→종료)을 1920×720(다크·라이트), 1920×1080(다크)에서 실행하고 스크린샷 저장. 총 스크린샷은 `docs/design/screenshots/`.
