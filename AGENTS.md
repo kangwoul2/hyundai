@@ -1,11 +1,12 @@
 # AI 작업 지침 — Astra / Claude / Codex / GPT
 
-## 현재 프로젝트 상태 (2026-11-05)
+## 현재 프로젝트 상태 (2026-11-05 갱신)
 
-- 저장소: `kangwoul2/hyundai` (private)
-- 단계: 조사 정리, 공식 규칙 확인, 후보 아이디어 토론.
-- **아이디어 확정: NO / 코드 개발 착수: NO / SDK 구동 검증: NO / 1차 제출: NO**
-- 사용자의 우선 요청: Claude 원문을 이해하기 쉬운 문장으로 정리하고, SDK의 실제 가능성을 알아본 다음 함께 아이디어를 선택할 것.
+- 저장소: `kangwoul2/hyundai` (private). 작업 브랜치 `feature/babyrelay-mvp`.
+- **아이디어 확정: YES — BabyRelay**(사용자 지시, [ADR-001](docs/architecture/ADR-001-mvp-scope.md)). **MVP 구현: 완료(Replay 기준).**
+- **SDK 검증(G1):** 실제 Pleos 에뮬레이터에서 NaviHelper 연결·경유지 포함 경로 요청·경로 취소 콜백 TESTED. **경유지/목적지 도착 콜백은 미검증**([sdk-integration.md](docs/development/sdk-integration.md)).
+- 시설 데이터는 합성 SAMPLE. 1차 제출: **미제출**(사용자 행동 필요, [submission-checklist.md](docs/submission/submission-checklist.md)).
+- 이전 단계 규칙("아이디어 확정 전 구현 금지")은 이 결정으로 대체됐다. 비범위 기능(서버, 실시간 인계, AI 챗봇 등)은 사용자가 추가 요청하기 전에는 다시 포함하지 않는다.
 
 ## 필독 순서
 1. `README.md`

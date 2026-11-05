@@ -1,0 +1,45 @@
+11-05 16:39:47.679  7218  7218 I [NaviHelper][SDK]NaviHelper: [main]getCurrentLocationInfo
+11-05 16:39:47.681  7218  7218 I [NaviHelper][SDK]NaviHelper: [main]getDestinationInfo
+11-05 16:39:47.681  1855  1867 I [Navi]a : [binder:1855_1]requestToNaviProvider(GetCurrentLocationInfo) com.babyrelay.app >> ai.umos.maps.android.navigation.app
+11-05 16:39:47.685  1855  1867 I [Navi]a : [binder:1855_1]requestToNaviProvider(GetDestinationInfo) com.babyrelay.app >> ai.umos.maps.android.navigation.app
+11-05 16:39:47.701  2811  4252 I [NaviHelper][SDK]b: [binder:2811_A]onDestinationInfo
+11-05 16:39:47.701  1119  1262 I [NaviHelper][SDK]b: [binder:1119_3]onDestinationInfo
+11-05 16:39:47.702  6475  7255 I [NaviHelper][SDK]b: [binder:6475_4]onDestinationInfo
+11-05 16:39:47.703  7218  7237 I [NaviHelper][SDK]b: [binder:7218_3]onDestinationInfo
+11-05 16:39:47.703  7218  7237 I BabyRelay.Pleos: onDestinationInfo name=''
+11-05 16:40:01.890  7218  7218 I [NaviHelper][SDK]NaviHelper: [main]requestRouteWithWaypoints
+11-05 16:40:01.893  1855  1867 I [Navi]a : [binder:1855_1]requestToNaviProvider(RequestRouteWithWaypoints) com.babyrelay.app >> ai.umos.maps.android.navigation.app
+11-05 16:40:13.208  7218  7237 I [NaviHelper][SDK]b: [binder:7218_3]onRouteStarted
+11-05 16:40:13.208  7218  7237 I BabyRelay.Pleos: onRouteStarted name=샘플 쉼터 07
+11-05 16:40:13.208  1119  1526 I [NaviHelper][SDK]b: [binder:1119_4]onRouteStarted
+11-05 16:40:13.209  2811  2850 I [NaviHelper][SDK]b: [binder:2811_3]onRouteStarted
+11-05 16:40:13.209  2811  2850 I [NaviHelper][SDK]b: [binder:2811_3]onRouteEnded
+11-05 16:40:13.217  7218  7218 I [NaviHelper][SDK]NaviHelper: [main]getWaypointInfo
+11-05 16:40:13.217  1855  3471 I [Navi]a : [binder:1855_4]requestToNaviProvider(GetRouteStateInfo) ai.umos.ambientai >> ai.umos.maps.android.navigation.app
+11-05 16:40:13.218  1855  3471 I [Navi]a : [binder:1855_4]requestToNaviProvider(GetWaypointInfo) com.babyrelay.app >> ai.umos.maps.android.navigation.app
+11-05 16:40:13.218  6475  6672 I [NaviHelper][SDK]b: [binder:6475_3]onRouteStarted
+11-05 16:40:13.219  6475  7255 I [NaviHelper][SDK]b: [binder:6475_4]onRouteEnded
+11-05 16:40:13.223  7218  7237 I [NaviHelper][SDK]b: [binder:7218_3]onRouteEnded
+11-05 16:40:13.223  7218  7237 I BabyRelay.Pleos: onRouteEnded
+11-05 16:40:13.225  1119  1526 I [NaviHelper][SDK]b: [binder:1119_4]onRouteEnded
+11-05 16:40:13.225  7218  7218 I [NaviHelper][SDK]NaviHelper: [main]getWaypointInfo
+11-05 16:40:13.225  2811  2850 I [NaviHelper][SDK]b: [binder:2811_3]onNavigationStatus
+11-05 16:40:13.225  1855  3471 I [Navi]a : [binder:1855_4]requestToNaviProvider(GetWaypointInfo) com.babyrelay.app >> ai.umos.maps.android.navigation.app
+11-05 16:40:13.226  1119  1526 I [NaviHelper][SDK]b: [binder:1119_4]onNavigationStatus
+11-05 16:40:13.226  7218  7237 I [NaviHelper][SDK]b: [binder:7218_3]onNavigationStatus
+11-05 16:40:13.226  7218  7237 I BabyRelay.Pleos: onNavigationStatus ROUTE_DRIVE
+11-05 16:40:13.234  6475  6672 I [NaviHelper][SDK]b: [binder:6475_3]onNavigationStatus
+11-05 16:40:13.644  2811  2850 I [NaviHelper][SDK]b: [binder:2811_3]onRouteStateInfo
+11-05 16:40:13.673  6475  7255 I [NaviHelper][SDK]b: [binder:6475_4]onRouteStateInfo
+11-05 16:40:13.677  1119  1526 I [NaviHelper][SDK]b: [binder:1119_4]onRouteStateInfo
+11-05 16:40:13.731  7218  7237 I [NaviHelper][SDK]b: [binder:7218_3]onRouteStateInfo
+11-05 16:40:14.346  6475  7255 I [NaviHelper][SDK]b: [binder:6475_4]onWayPointInfo
+11-05 16:40:14.347  2811  4653 I [NaviHelper][SDK]b: [binder:2811_B]onWayPointInfo
+11-05 16:40:14.348  1119 10948 I [NaviHelper][SDK]b: [binder:1119_D]onWayPointInfo
+11-05 16:40:14.348  7218  7237 I [NaviHelper][SDK]b: [binder:7218_3]onWayPointInfo
+11-05 16:40:14.348  7218  7237 I BabyRelay.Pleos: onWayPointInfo size=1
+11-05 16:40:14.700  6475  7255 I [NaviHelper][SDK]b: [binder:6475_4]onWayPointInfo
+11-05 16:40:14.700  7218  7237 I [NaviHelper][SDK]b: [binder:7218_3]onWayPointInfo
+11-05 16:40:14.700  7218  7237 I BabyRelay.Pleos: onWayPointInfo size=1
+11-05 16:40:14.702  1119 10948 I [NaviHelper][SDK]b: [binder:1119_D]onWayPointInfo
+11-05 16:40:14.704  2811  4653 I [NaviHelper][SDK]b: [binder:2811_B]onWayPointInfo

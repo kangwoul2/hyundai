@@ -31,3 +31,6 @@ _scratch/
 app/release/
 *.hprof
 screenshots/raw/
+
+__pycache__/
+*.pyc

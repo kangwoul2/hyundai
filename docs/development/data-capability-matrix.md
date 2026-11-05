@@ -18,7 +18,7 @@
 | Door / Window | 문·창문 상태 | 주차·승하차 맥락 | REPORTED, 미테스트 |
 | Tire | 타이어 관련 상태 | 장기 변화 추적 | 구체적 수치 UNKNOWN |
 | Brake | 브레이크 상태 | 정차 상황 추정 | 값의 의미 UNKNOWN |
-| NaviHelper | 목적지·주행 연동 | 도착 시점 기능 | 실제 반환 좌표 UNKNOWN |
+| NaviHelper | 목적지·주행 연동 | 도착 시점 기능 | **TESTED(2026-11-05, Pleos 에뮬레이터 v2.1.0)**: 연결, 경유지 포함 경로 요청, 경로 취소·경유지 조회 콜백. 도착 콜백은 미검증. [sdk-integration.md](sdk-integration.md) |
 | FusedLocation | 위치 관련 기능 | 지역별 정보 결합 | 사용 가능 권한 UNKNOWN |
 | TTS/STT | 음성 입출력 | 운전 중 간단 안내 | 제공 상태·권한 UNKNOWN |
 
@@ -59,3 +59,8 @@
 7. StopMap: 정확한 이동/정차 및 위치 신호를 지속적으로 얻을 수 있는가?
 
 기록할 때 `OFFICIAL`, `REPORTED`, `TESTED`, `HYPOTHESIS`, `UNKNOWN`을 구분한다.
+
+
+## 갱신 — 2026-11-05 (NaviHelper 3.0.5 실측)
+
+SDK 배포 소스(공개 Maven `sources.jar`)로 시그니처를 확인하고 Pleos Connect Emulator v2.1.0(API 34)에서 실행했다. 표는 [sdk-integration.md](sdk-integration.md)에 있다. `TESTED`로 올린 것은 그 문서의 TESTED 행뿐이다. 나머지 신호(Vehicle SDK 등)는 이번 MVP에서 사용하지 않았으므로 상태가 바뀌지 않았다.

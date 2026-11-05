@@ -1,0 +1,9 @@
+11-05 16:41:18.933  7218 19393 I [NaviHelper][SDK]b: [binder:7218_7]onRouteCancelled
+11-05 16:41:18.933  7218 19393 I BabyRelay.Pleos: onRouteCancelled
+11-05 16:41:18.977  7218 19393 I [NaviHelper][SDK]b: [binder:7218_7]onNavigationStatus
+11-05 16:41:18.977  7218 19393 I BabyRelay.Pleos: onNavigationStatus FREE_DRIVE
+11-05 16:41:19.039  7218 19393 I [NaviHelper][SDK]b: [binder:7218_7]onDestinationInfo
+11-05 16:41:19.039  7218 19393 I BabyRelay.Pleos: onDestinationInfo name=''
+11-05 16:41:19.040  7218 19393 I [NaviHelper][SDK]b: [binder:7218_7]onWayPointInfo
+11-05 16:41:19.040  7218 19393 I BabyRelay.Pleos: onWayPointInfo size=0
+11-05 16:41:19.231  7218 19393 I [NaviHelper][SDK]b: [binder:7218_7]onRouteStateInfo

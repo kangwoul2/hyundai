@@ -26,6 +26,12 @@ def display_id():
     return m.group(1) if m else None
 
 
+def screen_size():
+    out = adb("shell", "wm", "size").stdout
+    m = re.search(r"(\d+)x(\d+)", out)
+    return (int(m.group(1)), int(m.group(2))) if m else (1920, 720)
+
+
 def shot(path):
     d = display_id()
     cmd = ["shell", "screencap"] + (["-d", d] if d else []) + ["-p", "/sdcard/_s.png"]

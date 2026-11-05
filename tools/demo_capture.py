@@ -47,13 +47,28 @@ def main():
     emu.adb("shell", "pm", "clear", "--user", user, "com.babyrelay.app")
     emu.adb("shell", "am", "start", "-n", "com.babyrelay.app/.MainActivity")
     wait(9)  # Pleos 연결 시도(최대 6초) 후 REPLAY로 전환
+    if "--force-replay" in sys.argv:
+        # Pleos 에뮬레이터처럼 PLEOS로 연결되는 환경에서 REPLAY 장면을 촬영할 때: 개발 패널에서 REPLAY로 전환한다.
+        w, h = emu.screen_size()
+        emu.adb("shell", "input", "tap", str(int(w * 0.66)), str(int(h * 0.55)))  # 앱 창 포커스
+        wait(1)
+        emu.tap_text("PLEOS ·")
+        wait(1)
+        emu.tap_text("REPLAY 모드로 전환")
+        wait(1.5)
+        emu.tap_text("닫기", exact=True)
+        wait(1.5)
 
     def shot(name):
         emu.shot(os.path.join(out, f"{name}-{theme}.png"))
         print("shot", name)
 
     shot("01-idle")
-    emu.tap_text("여행 시작"); wait(2)
+    try:
+        emu.tap_text("여행 시작", retries=1)  # 포커스용 탭이 이미 눌렀다면 이미 계획 화면이다
+    except SystemExit:
+        pass
+    wait(2)
     shot("02-plan")
     emu.tap_text("경유지로 등록"); wait(0.5)
     shot("03-requested")

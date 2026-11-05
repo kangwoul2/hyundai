@@ -443,6 +443,8 @@ class TripController(
 
     private fun recompute() {
         val s = session
+        // 현재 위치를 아직 못 받았다면 다시 요청한다(실제 Pleos 에뮬레이터는 콜드 부팅 직후 위치를 주지 않을 수 있음).
+        if (s != null && s.state == TripState.PLANNING && _state.value.origin == null) gateway.requestCurrentLocation()
         val rec = if (s == null || s.state != TripState.PLANNING || s.destination == null) {
             null
         } else if (facilityLoadError != null) {
