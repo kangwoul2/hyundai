@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "dataset": "BabyRelay 시연용 합성 샘플",
+    "kind": "SAMPLE",
+    "generatedOn": "2026-11-05",
+    "note": "실제 운영 시설이 아닌 합성 데이터입니다. 실제 공공데이터는 인증키/포털 로그인이 필요해 이번 빌드에 포함하지 못했습니다."
+  },
+  "demoOrigin": {
+    "lat": 37.4692,
+    "lon": 127.0393,
+    "label": "서울 양재 부근 (시연용)"
+  },
+  "destinations": [
+    {
+      "id": "dest-daejeon",
+      "name": "대전역",
+      "address": "대전광역시 동구 중앙로 (시연용 근사 좌표)",
+      "lat": 36.3323,
+      "lon": 127.4342
+    },
+    {
+      "id": "dest-cheonan",
+      "name": "천안아산역",
+      "address": "충청남도 아산시 (시연용 근사 좌표)",
+      "lat": 36.7944,
+      "lon": 127.1042
+    },
+    {
+      "id": "dest-gangneung",
+      "name": "강릉역",
+      "address": "강원특별자치도 강릉시 (시연용 근사 좌표)",
+      "lat": 37.764,
+      "lon": 128.8993
+    }
+  ],
+  "facilities": [
+    {
+      "id": "sample-01",
+      "name": "샘플 쉼터 01",
+      "address": "합성 데이터 (실제 시설 아님) #01",
+      "lat": 37.33564,
+      "lon": 127.099796,
+      "kind": "휴게소",
+      "amenities": [
+        "NURSING_ROOM",
+        "DIAPER_TABLE",
+        "HOT_WATER",
+        "PARKING"
+      ],
+      "origin": "SAMPLE",
+      "verifiedOn": "2026-10-20"
+    },
+    {
+      "id": "sample-02",
+      "name": "샘플 쉼터 02",
+      "address": "합성 데이터 (실제 시설 아님) #02",
+      "lat": 37.252576,
+      "lon": 127.167436,
+      "kind": "쇼핑몰",
+      "amenities": [
+        "NURSING_ROOM",
+        "DIAPER_TABLE",
+        "PARKING"
+      ],
+      "origin": "SAMPLE",
+      "verifiedOn": "2026-09-30"
+    },
+    {
+      "id": "sample-03",
+      "name": "샘플 쉼터 03",
+      "address": "합성 데이터 (실제 시설 아님) #03",
+      "lat": 37.15278,
+      "lon": 127.158611,
+      "kind": "휴게소",
+      "amenities": [
+        "NURSING_ROOM",
+        "DIAPER_TABLE",
+        "HOT_WATER",
+        "PARKING"
+      ],
+      "origin": "SAMPLE",
+      "verifiedOn": "2026-10-25"
+    },
+    {
+      "id": "sample-04",
+      "name": "샘플 쉼터 04",
+      "address": "합성 데이터 (실제 시설 아님) #04",
+      "lat": 37.108364,
+      "lon": 127.235158,
+      "kind": "공공시설",
+      "amenities": [
+        "NURSING_ROOM"
+      ],
+      "origin": "SAMPLE",
+      "verifiedOn": "2026-08-15"
+    },
+    {
+      "id": "sample-05",
+      "name": "샘플 쉼터 05",
+      "address": "합성 데이터 (실제 시설 아님) #05",
+      "lat": 36.996482,
+      "lon": 127.227005,
+      "kind": "휴게소",
+      "amenities": [
+        "NURSING_ROOM",
+        "DIAPER_TABLE",
+        "PARKING"
+      ],
+      "origin": "SAMPLE",
+      "verifiedOn": "2025-06-01"
+    },
+    {
+      "id": "sample-06",
+      "name": "샘플 쉼터 06",
+      "address": "합성 데이터 (실제 시설 아님) #06",
+      "lat": 36.946194,
+      "lon": 127.332625,
+      "kind": "문화시설",
+      "amenities": [
+        "NURSING_ROOM",
+        "DIAPER_TABLE"
+      ],
+      "origin": "SAMPLE",
+      "verifiedOn": "2026-10-01"
+    },
+    {
+      "id": "sample-07",
+      "name": "샘플 쉼터 07",
+      "address": "합성 데이터 (실제 시설 아님) #07",
+      "lat": 36.84749,
+      "lon": 127.27288,
+      "kind": "휴게소",
+      "amenities": [
+        "NURSING_ROOM",
+        "DIAPER_TABLE",
+        "HOT_WATER",
+        "PARKING"
+      ],
+      "origin": "SAMPLE",
+      "verifiedOn": "2026-10-28"
+    },
+    {
+      "id": "sample-08",
+      "name": "샘플 쉼터 08",
+      "address": "합성 데이터 (실제 시설 아님) #08",
+      "lat": 36.771492,
+      "lon": 127.316909,
+      "amenities": [
+        "NURSING_ROOM",
+        "DIAPER_TABLE"
+      ],
+      "origin": "SAMPLE",
+      "verifiedOn": "2026-07-10"
+    },
+    {
+      "id": "sample-09",
+      "name": "샘플 쉼터 09",
+      "address": "합성 데이터 (실제 시설 아님) #09",
+      "lat": 36.702051,
+      "lon": 127.446812,
+      "kind": "쇼핑몰",
+      "amenities": [
+        "NURSING_ROOM",
+        "DIAPER_TABLE",
+        "HOT_WATER",
+        "PARKING"
+      ],
+      "origin": "SAMPLE",
+      "verifiedOn": "2026-10-05"
+    },
+    {
+      "id": "sample-10",
+      "name": "샘플 쉼터 10",
+      "address": "합성 데이터 (실제 시설 아님) #10",
+      "lat": 36.584808,
+      "lon": 127.358246,
+      "kind": "휴게소",
+      "amenities": [
+        "DIAPER_TABLE",
+        "PARKING"
+      ],
+      "origin": "SAMPLE",
+      "verifiedOn": "2026-10-12"
+    },
+    {
+      "id": "sample-11",
+      "name": "샘플 쉼터 11",
+      "address": "합성 데이터 (실제 시설 아님) #11",
+      "lat": 36.473986,
+      "lon": 127.410844,
+      "kind": "공공시설",
+      "amenities": [
+        "NURSING_ROOM",
+        "DIAPER_TABLE",
+        "PARKING"
+      ],
+      "origin": "SAMPLE",
+      "verifiedOn": "2026-10-18"
+    },
+    {
+      "id": "sample-12",
+      "name": "샘플 쉼터 12",
+      "address": "합성 데이터 (실제 시설 아님) #12",
+      "lat": 36.413078,
+      "lon": 127.412019,
+      "kind": "휴게소",
+      "amenities": [],
+      "origin": "SAMPLE",
+      "verifiedOn": "2026-10-30"
+    },
+    {
+      "id": "sample-13",
+      "name": "샘플 쉼터 13",
+      "address": "합성 데이터 (실제 시설 아님) #13",
+      "lat": 37.234252,
+      "lon": 127.082352,
+      "kind": "휴게소",
+      "amenities": [
+        "NURSING_ROOM",
+        "DIAPER_TABLE",
+        "PARKING"
+      ],
+      "origin": "SAMPLE",
+      "verifiedOn": "2026-10-22"
+    },
+    {
+      "id": "sample-14",
+      "name": "샘플 쉼터 14",
+      "address": "합성 데이터 (실제 시설 아님) #14",
+      "lat": 37.03236,
+      "lon": 127.11086,
+      "kind": "쇼핑몰",
+      "amenities": [
+        "NURSING_ROOM",
+        "DIAPER_TABLE",
+        "HOT_WATER"
+      ],
+      "origin": "SAMPLE",
+      "verifiedOn": "2026-10-09"
+    }
+  ]
+}
