@@ -69,7 +69,7 @@
 # 2) avdmanager create avd -n pleos21 -k "system-images;android-34;android-automotive;x86_64" -d Pleos_Connect_v2_0   (devices.xml 은 이미지에 포함)
 # 3) config.ini: hw.ramSize=4096M, fastboot.forceColdBoot=yes
 emulator -avd pleos21 -no-snapshot -no-audio
-adb install apk\TEAMNAME_BabyRelay_release.apk
+adb install apk\한영서_BabyRelay_release.apk
 adb shell am start -n com.babyrelay.app/.MainActivity     # 상단에 PLEOS · 내비 연결됨 확인
 adb logcat -s BabyRelay.Pleos:V                             # 콜백 로그
 ```

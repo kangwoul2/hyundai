@@ -74,7 +74,7 @@ Pleos 내비 서비스에 연결되지 않으면(예: 일반 AAOS 에뮬레이�
 
 ## 10. APK 위치
 
-`apk/TEAMNAME_BabyRelay_release.apk` (v2 서명, SHA-256은 [evidence-manifest.md](docs/demo/evidence-manifest.md)). **파일명의 `TEAMNAME`은 팀명 확정 후 교체해야 한다**(공식 형식 `팀명_앱이름_release.apk`). 서명 키는 저장소에 없다.
+`apk/한영서_BabyRelay_release.apk` (v2 서명, SHA-256은 [evidence-manifest.md](docs/demo/evidence-manifest.md)). 개인 참가이므로 공식 형식 `팀명_앱이름_release.apk`의 팀명 자리에 성명을 썼다. 서명 키는 저장소에 없다.
 
 ## 11. 시연 영상
 

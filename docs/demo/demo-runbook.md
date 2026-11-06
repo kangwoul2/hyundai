@@ -3,7 +3,7 @@
 ## 준비
 
 1. 에뮬레이터 실행(권장 1920×1080 — 추천 2건이 한 화면에 보임). 해상도 변경: `adb shell wm size 1920x1080` (복구 `adb shell wm size reset`).
-2. 앱 설치: `adb install -r apk\TEAMNAME_BabyRelay_release.apk` (디버그: `app\build\outputs\apk\debug\app-debug.apk`).
+2. 앱 설치: `adb install -r apk\한영서_BabyRelay_release.apk` (디버그: `app\build\outputs\apk\debug\app-debug.apk`).
 3. 초기화: `adb shell pm clear --user <am get-current-user 결과> com.babyrelay.app`.
 4. 앱 실행. Pleos 서비스에 연결되지 않으면 약 6초 뒤 자동으로 **REPLAY 모드**로 전환되며 상단에 `REPLAY · 시뮬레이션 (실제 연동 아님)`이 표시된다. 연결되면 `PLEOS · 내비 연결됨`.
 5. 개발·시연 패널: 상단 오른쪽 모드 태그를 누른다(출시 사용자용 아님).

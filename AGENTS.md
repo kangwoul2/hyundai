@@ -2,7 +2,7 @@
 
 ## 현재 프로젝트 상태 (2026-11-05 갱신)
 
-- 저장소: `kangwoul2/hyundai` (private). 작업 브랜치 `feature/babyrelay-mvp`.
+- 저장소: `kangwoul2/hyundai` (private). 기준 브랜치 `main` (2026-11-06 `feature/babyrelay-mvp` 병합 후 삭제).
 - **아이디어 확정: YES — BabyRelay**(사용자 지시, [ADR-001](docs/architecture/ADR-001-mvp-scope.md)). **MVP 구현: 완료(Replay 기준).**
 - **SDK 검증(G1):** 실제 Pleos 에뮬레이터에서 NaviHelper 연결·경유지 포함 경로 요청·경로 취소 콜백 TESTED. **경유지/목적지 도착 콜백은 미검증**([sdk-integration.md](docs/development/sdk-integration.md)).
 - 시설 데이터는 합성 SAMPLE. 1차 제출: **미제출**(사용자 행동 필요, [submission-checklist.md](docs/submission/submission-checklist.md)).

@@ -10,13 +10,13 @@
 | JVM 단위 테스트 72건 통과 | [test-results.md](../testing/test-results.md), [logs/unit-test-run-1.txt](../testing/logs/unit-test-run-1.txt)(70건 시점) | JVM |
 | 계측 테스트 4건 통과 | test-results.md 2절 | [AAOS 에뮬레이터] |
 | CarUxRestrictions 주행(true)/주차(false) 값 | test-results.md, `replay-aaos-1920x720/07b…`, `07c…` | [AAOS 에뮬레이터] VHAL 주입 |
-| Release APK 클린 설치 | `apk/TEAMNAME_BabyRelay_release.apk`, `pleos-emulator-2560x1440/00-…` | [Pleos 에뮬레이터], [AAOS 에뮬레이터] |
+| Release APK 클린 설치 | `apk/한영서_BabyRelay_release.apk`, `pleos-emulator-2560x1440/00-…` | [Pleos 에뮬레이터], [AAOS 에뮬레이터] |
 
 ### APK
 
 | 파일 | SHA-256 | 크기 |
 | --- | --- | --- |
-| `apk/TEAMNAME_BabyRelay_release.apk` (v0.1.0-mvp, v2 서명, DN `CN=BabyRelay, OU=Contest, O=BabyRelay, C=KR`) | `cd2c5e408be79987cb590c3f6fd3c7f6d570507313bfa34fd92c0e0f315d8f26` | 19,668,315 B |
+| `apk/한영서_BabyRelay_release.apk` (v0.1.0-mvp, v2 서명, DN `CN=BabyRelay, OU=Contest, O=BabyRelay, C=KR`) | `cd2c5e408be79987cb590c3f6fd3c7f6d570507313bfa34fd92c0e0f315d8f26` | 19,668,315 B |
 
 서명 키(`C:\SSAFY\keys\babyrelay-release.jks`)와 비밀번호(`keystore.properties`)는 저장소 밖/제외이며 **사용자가 별도 백업해야 한다**(분실 시 같은 서명으로 업데이트 불가).
 

@@ -46,7 +46,7 @@
 ## 3. 에뮬레이터 시나리오 (스크립트 `tools/demo_capture.py`)
 
 - REPLAY 전체 흐름(계획→추천→등록→이동→휴식 기록→주행 제한 잠금→도착→카드→종료)을 1920×720(다크·라이트), 1920×1080(다크)에서 실행하고 스크린샷 저장. 총 스크린샷은 `docs/design/screenshots/`.
-- 릴리스 APK(`apk/TEAMNAME_BabyRelay_release.apk`, v2 서명 검증)를 `adb uninstall` 후 설치하고 실행 확인.
+- 릴리스 APK(`apk/한영서_BabyRelay_release.apk`, v2 서명 검증)를 `adb uninstall` 후 설치하고 실행 확인.
 
 ## 4. 실제 Pleos Connect 에뮬레이터 (G1)
 

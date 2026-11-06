@@ -8,8 +8,8 @@
 | 2 | 개인정보 수집·이용 동의서(참가자별 서명) | ⬜ 사용자 | 팀 참가 시 전원 개별 서명, 대표자가 전원 CC |
 | 3 | 참가 부문(대학생/일반) 확인 | ⬜ 사용자 | SSAFY 교육생이라는 사실만으로 확정되지 않음 |
 | 4 | 이메일 제출 | ⬜ 사용자 | `appdevchallenge@hyundai-partners.com`, 제목 `[차량용 앱 개발 공모전] 팀명(개인은 성명)_대표자명` |
-| 5 | 소스 코드 저장소 | ✅ | 브랜치 `feature/babyrelay-mvp` (실제 제출 시 main 병합 여부는 사용자 결정) |
-| 6 | release APK `apk/팀명_앱이름_release.apk` | ⚠️ 이름 교체 필요 | 현재 `TEAMNAME_BabyRelay_release.apk`. 팀명 확정 후 파일명 변경(+ 증거 목록의 해시는 파일명과 무관) |
+| 5 | 소스 코드 저장소 | ✅ | `main` 브랜치 (2026-11-06 병합, 작업 브랜치는 삭제) |
+| 6 | release APK `apk/팀명_앱이름_release.apk` | ✅ | `apk/한영서_BabyRelay_release.apk` (개인 참가, 성명 사용). 이름만 바꿨고 해시는 그대로 |
 | 7 | README(앱 이름·소개·실행 방법·테스트 환경·APK 위치) | ✅ | |
 | 8 | 심사용 GitHub 계정을 collaborator로 초대, 실제 접근 확인 | ⬜ 사용자 | Private 저장소는 공지된 심사용 계정 초대 필요. **쓰기 권한이 부여될 수 있음 유의** |
 | 9 | 프로토타입 시연 영상(선택, 가산점) | ◐ 초안 | `docs/demo/video/babyrelay-demo-A-draft.mp4`. 심사용으로 다시 다듬고 업로드 경로를 정해야 함 |
