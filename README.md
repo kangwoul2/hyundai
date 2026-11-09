@@ -4,6 +4,26 @@
 
 2026 현대자동차그룹 차량용 앱 개발 공모전 출품 프로젝트(Pleos Connect, Android Automotive). **상태: MVP 구현·테스트 완료(Replay 기준), 실제 Pleos 에뮬레이터 검증은 부분 완료** — 아래 "검증 상태"를 먼저 읽어 주세요.
 
+## 심사위원용 빠른 확인
+
+| 보고 싶은 것 | 위치 |
+| --- | --- |
+| 77초 시연 영상 | [docs/demo/video/babyrelay-demo-final.mp4](docs/demo/video/babyrelay-demo-final.mp4) (장면마다 출처 표시) |
+| 실제 Pleos 에뮬레이터 녹화 원본 | [docs/demo/video/scene-pleos-navi-real.mp4](docs/demo/video/scene-pleos-navi-real.mp4) |
+| release APK | `apk/한영서_BabyRelay_release.apk` |
+| 기획서 본문 | [docs/submission/proposal.md](docs/submission/proposal.md) |
+| SDK 실측 결과와 로그 | [docs/development/sdk-integration.md](docs/development/sdk-integration.md) |
+
+APK만으로 전 과정을 보는 방법 (서버와 계정 불필요):
+
+1. Pleos Connect Emulator 또는 Android Automotive 에뮬레이터(API 28 이상)에 `adb install -r apk/한영서_BabyRelay_release.apk`
+2. 앱 실행. Pleos 내비 서비스가 없으면 약 6초 뒤 자동으로 REPLAY 모드가 된다
+3. 상단 모드 태그를 눌러 시연 패널을 열고 시나리오 이벤트(출발 계획, 경유지 도착, 목적지 도착)를 차례로 재생
+
+테스트 환경: Pleos Connect Emulator v2.1.0(시스템 이미지 API 34), Google AAOS 에뮬레이터, Windows, JDK 17.
+
+![실제 Pleos 에뮬레이터에서 내비 경로에 경유지가 들어간 장면](docs/submission/figures/fig2-pleos-waypoint-real.png)
+
 ## 1. 해결하려는 문제
 
 생후 3~12개월 아이와 1~3시간 이동하는 보호자는 (1) 수유·기저귀 교환 가능한 휴식 장소를 찾고, (2) 그 장소를 내비에 다시 등록하고, (3) 이동 중 돌봄 기록을 목적지의 다음 보호자에게 전달하기 어렵다. *(기획 가설이며 사용자 조사 데이터는 아직 없다.)*
@@ -78,7 +98,7 @@ Pleos 내비 서비스에 연결되지 않으면(예: 일반 AAOS 에뮬레이�
 
 ## 11. 시연 영상
 
-[docs/demo/video/](docs/demo/video/): `scene-pleos-navi-real.mp4`(실제 Pleos 에뮬레이터), `scene-replay-flow.mp4`(REPLAY), `babyrelay-demo-A-draft.mp4`(영상 A 초안 약 98초). 각 장면의 출처는 자막과 [shot-list.md](docs/demo/shot-list.md)에 표기. SNS 업로드는 하지 않았다.
+[docs/demo/video/](docs/demo/video/): `babyrelay-demo-final.mp4`(심사용 77초, `tools/make_final_demo.py`로 재현 가능), `scene-pleos-navi-real.mp4`(실제 Pleos 에뮬레이터 원본), `scene-replay-flow.mp4`(REPLAY 원본). 각 장면의 출처는 화면 여백의 라벨과 [shot-list.md](docs/demo/shot-list.md)에 표기. SNS 업로드는 하지 않았다.
 
 ## 12. 데이터 출처
 
@@ -95,6 +115,6 @@ Pleos 내비 서비스에 연결되지 않으면(예: 일반 AAOS 에뮬레이�
 
 ## 문서 지도
 
-요구사항 [PRD](docs/requirements/PRD.md) · 설계 [system-design](docs/architecture/system-design.md), [state-machine](docs/architecture/state-machine.md) · 테스트 [test-plan](docs/testing/test-plan.md), [test-results](docs/testing/test-results.md) · 제출 [checklist](docs/submission/submission-checklist.md), [기획서 자료](docs/submission/planning-material.md) · 기획 단계 자료(원문 보존): [docs/research/](docs/research/), [competition/rules.md](docs/competition/rules.md), [ideas](docs/ideas/idea-pool.md), [decision-log](docs/process/decision-log.md)
+요구사항 [PRD](docs/requirements/PRD.md) · 설계 [system-design](docs/architecture/system-design.md), [state-machine](docs/architecture/state-machine.md) · 테스트 [test-plan](docs/testing/test-plan.md), [test-results](docs/testing/test-results.md) · 제출 [checklist](docs/submission/submission-checklist.md), [기획서 본문](docs/submission/proposal.md), [기획서 자료](docs/submission/planning-material.md) · 기획 단계 자료(원문 보존): [docs/research/](docs/research/), [competition/rules.md](docs/competition/rules.md), [ideas](docs/ideas/idea-pool.md), [decision-log](docs/process/decision-log.md)
 
 작업 지침(AI 협업): [AGENTS.md](AGENTS.md)

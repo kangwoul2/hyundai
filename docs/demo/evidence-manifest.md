@@ -35,7 +35,7 @@
 | --- | --- | --- |
 | 전 과정 스크린샷 | `docs/design/screenshots/replay-aaos-1920x720/`(다크·라이트), `replay-aaos-1920x1080/`, `replay-pleos-2560x1440/` | [REPLAY] [SAMPLE] |
 | 전 과정 녹화 | `docs/demo/video/scene-replay-flow.mp4` | [REPLAY] [SAMPLE] |
-| 영상 A 초안(약 98초) | `docs/demo/video/babyrelay-demo-A-draft.mp4` | 장면별 자막 라벨 |
+| 심사용 영상(77초) | `docs/demo/video/babyrelay-demo-final.mp4` (`tools/make_final_demo.py`로 기존 녹화와 캡처에서 조립) | 장면별 여백 라벨 |
 | 재현 스크립트 | `tools/demo_capture.py`, `tools/emu.py`, `tools/make_demo_video.ps1` | |
 
 ## 장면별 출처 (shot-list와 일치)
